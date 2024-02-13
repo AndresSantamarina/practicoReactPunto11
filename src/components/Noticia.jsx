@@ -1,17 +1,32 @@
 import { Card, Button } from "react-bootstrap";
 
-const Noticia = () => {
+const Noticia = ({ noticia }) => {
+  const maxLength = 150;
+
+  const truncarDescripcion = (texto) => {
+    if (!texto || typeof texto !== "string") {
+      return "";
+    }
+
+    return texto.length > maxLength
+      ? texto.substring(0, maxLength) + "..."
+      : texto;
+  };
   return (
     <div>
-      <Card className="w-50">
-        <Card.Img variant="top" src="holder.js/100px180" />
+      <Card className="m-3 cardNoticia">
+        <Card.Img
+          variant="top"
+          src={noticia.image_url}
+          alt="imagen de la noticia"
+          className="img-fluid"
+        />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Title>{noticia.title}</Card.Title>
+          <Card.Text>{truncarDescripcion(noticia.description)}</Card.Text>
+          <Button variant="primary" href={noticia.link} target="_blank">
+            Leer más
+          </Button>
         </Card.Body>
       </Card>
     </div>

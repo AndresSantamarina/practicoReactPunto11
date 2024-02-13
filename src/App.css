@@ -12,3 +12,7 @@ body {
 .mainPage {
   flex-grow: 1;
 }
+
+.cardNoticia {
+  width: 500px;
+}
